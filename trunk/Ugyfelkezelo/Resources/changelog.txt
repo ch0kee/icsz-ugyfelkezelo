@@ -1,0 +1,68 @@
+Új funkciók:
+* !!TARTOZÁSOK SZÁMOLÁSA INFOCENTRUM SZÁMLÁZÓBÓL!!
+* A Mûveletek menüpontban mûködik az alábbi két funkció:
+    - Elõfizetések létrehozása szerzõdés alapján (mielõtt rányomsz már jelöld ki az ügyfeleket)
+	- Elõfizetések kezdõdátumának módosítása (szintén, mielõtt rányomsz, jelöld ki az elõfizetéseket)
+	(Minden elõfizetés kijelölése: belekattintasz a rácsba és CTRL+A )
+
+Egyéb fejlesztések:
+* A kijelölések háttérszínét élénkre állítottam
+* Próbaképpen teljes ablakban indul a progi, szólj ha nem tetszik
+* Ügyfél ablak megnyitásakor a Név mezõben van a kurzor
+* Lépcsõház ablak megnyitásakor az Utca mezõben van a kurzor
+* Konstrukció ablak megnyitásakor a Név mezõben van a kurzor
+* Ha kijelölsz sok elemet és a DEL gombbal törölsz, akkor több lehetõséged van
+#
+* Ügyfélkapcsolatok létrehozása
+* Használt számlatömbök beállítása
+* ICSzámla adatbázis útvonal beállítása
+#
+* Új IDENTITY adatbázis séma
+* Hibás DataDirectory javítás
+#
+* Új .NET verzió (4.5)
+* FireBird adatbázis-kapcsolat (InfoCentrum) 
+#
+* Bankszámlaszám max 26 karakter (24 számjegy + 2 kötõjel)
+* Bankszámlaszám kötõjelek beszúrása
+#
+* "Mentés és új" gomb
+* Bevitelnél Enterrel is elmenti az adatokat
+* Bevitel megszakításakor nem száll el (frissítési hiba)
+#
+Új ügyfél parancs javítások:
+* Saját cégadatok + Csoportos beszedési megbízás
+* Alapértelmezésben egyéni az új ügyfél és pipát kell tenni oda, ha egyéni
+* Attól függõen, hogy egyéni, vagy céges az ügyfél, más-más mezõk jelennek meg
+* A szolgáltatás kezdõidõpontja 0001.01.01 helyett mindig a mai dátum
+* Új ügyfél felvitelekor látható, ha van már ugyanolyan nevû ügyfél
+  Itt csak minden 2. leütéskor írta ki a tippet, mostmár jól mûxik
+
+Egyéb javítások
+* Ki lehet lépni bárhonnan nyugodtan a jobb felsõ sarokban levõ [X] gombbal
+* Kivettem az elõfizetések rácsból az ID oszlopot
+
+* Teljesen automatikus verziófrissítés
+
+* A funkciók mostantól kezdve a fõmenün keresztül érhetõek el
+* Szolgáltatás kezdõidõpontját kötelezõ megadni
+* Új ablakok mindig a bal felsõ sarokban nyílnak meg
+* Minden változtatás automatikusan megjelenik a rácsokon
+* Többszörös kijelölés törlése DELETE gombbal, vagy a menübõl (Szerkesztés/Több elem eltávolítása)
+
+* Konstrukciók hozzáadása, módosítása, törlése
+* Elõfizetések varázsló, elõfizetés törlése
+* Tartozás számolása
+#
+
+* Adatbázis frissítés: Kód mezõ hozzáadva (egyelõre nincs használva)
+#
+
+* Néha elszáll ügyfél mentésénél, kellene a hibaüzenet
+* Irányítószám ellenõrzés javítás
+#
+
+* Adatbázis kiegészítés: Csomag és Elõfizetés táblák
+* Az adatbázis új helyre került
+* Az adatbázisról biztonsági mentés készül kényes mûveletek elõtt
+#

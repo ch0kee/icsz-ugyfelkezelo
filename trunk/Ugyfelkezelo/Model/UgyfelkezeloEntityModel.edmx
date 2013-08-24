@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ukdbModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ukdbModelStoreContainer">
+          <EntitySet Name="Beallitasok" EntityType="ukdbModel.Store.Beallitasok" store:Type="Tables" />
+          <EntitySet Name="Elofizetes" EntityType="ukdbModel.Store.Elofizetes" store:Type="Tables" />
+          <EntitySet Name="FizetettIdoszak" EntityType="ukdbModel.Store.FizetettIdoszak" store:Type="Tables" />
+          <EntitySet Name="InfoCentrumSzamlatomb" EntityType="ukdbModel.Store.InfoCentrumSzamlatomb" store:Type="Tables" />
+          <EntitySet Name="Konstrukcio" EntityType="ukdbModel.Store.Konstrukcio" store:Type="Tables" />
+          <EntitySet Name="Lepcsohaz" EntityType="ukdbModel.Store.Lepcsohaz" store:Type="Tables" />
+          <EntitySet Name="Operator" EntityType="ukdbModel.Store.Operator" store:Type="Tables" />
+          <EntitySet Name="SchemaInfo" EntityType="ukdbModel.Store.SchemaInfo" store:Type="Tables" store:Name="SchemaInfo">
+            <DefiningQuery>SELECT 
+            [SchemaInfo].[Version] AS [Version]
+            FROM [SchemaInfo] AS [SchemaInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Ugyfel" EntityType="ukdbModel.Store.Ugyfel" store:Type="Tables" />
+          <AssociationSet Name="FK_Elofizetes_KonstrukcioID_Konstrukcio_ID" Association="ukdbModel.Store.FK_Elofizetes_KonstrukcioID_Konstrukcio_ID">
+            <End Role="Konstrukcio" EntitySet="Konstrukcio" />
+            <End Role="Elofizetes" EntitySet="Elofizetes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elofizetes_UgyfelID_Ugyfel_Id" Association="ukdbModel.Store.FK_Elofizetes_UgyfelID_Ugyfel_Id">
+            <End Role="Ugyfel" EntitySet="Ugyfel" />
+            <End Role="Elofizetes" EntitySet="Elofizetes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FizetettIdoszak_ElofizetesID_Elofizetes_ID" Association="ukdbModel.Store.FK_FizetettIdoszak_ElofizetesID_Elofizetes_ID">
+            <End Role="Elofizetes" EntitySet="Elofizetes" />
+            <End Role="FizetettIdoszak" EntitySet="FizetettIdoszak" />
+          </AssociationSet>
+          <AssociationSet Name="UgyfelToLepcsohaz" Association="ukdbModel.Store.UgyfelToLepcsohaz">
+            <End Role="Lepcsohaz" EntitySet="Lepcsohaz" />
+            <End Role="Ugyfel" EntitySet="Ugyfel" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Beallitasok">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Cegnev" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Adoazonosito" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Bankszamlaszam" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="IcSzamlaUtvonal" Type="nvarchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="Elofizetes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UgyfelID" Type="int" Nullable="false" />
+          <Property Name="KonstrukcioID" Type="int" Nullable="false" />
+          <Property Name="Mettol" Type="datetime" />
+          <Property Name="Meddig" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FizetettIdoszak">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ElofizetesID" Type="int" Nullable="false" />
+          <Property Name="Mettol" Type="datetime" />
+          <Property Name="Meddig" Type="datetime" />
+        </EntityType>
+        <EntityType Name="InfoCentrumSzamlatomb">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ICSzamlatombID" Type="int" Nullable="false" />
+          <Property Name="Elotag" Type="nvarchar" MaxLength="10" />
+          <Property Name="Utotag" Type="nvarchar" MaxLength="10" />
+          <Property Name="Hasznalt" Type="int" />
+          <Property Name="Nev" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="Konstrukcio">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nev" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Ar" Type="int" />
+          <Property Name="Kod" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lepcsohaz">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Iranyitoszam" Type="nvarchar" Nullable="false" MaxLength="6" />
+          <Property Name="Varos" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="Utca" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="Szam" Type="nvarchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Operator">
+          <Key>
+            <PropertyRef Name="Felhasznalonev" />
+          </Key>
+          <Property Name="Felhasznalonev" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Jelszo" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+            warning 6002: The table/view 'SchemaInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+            -->
+        <EntityType Name="SchemaInfo">
+          <Key>
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="Version" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ugyfel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nev" Type="nvarchar" Nullable="false" MaxLength="120" />
+          <Property Name="SzuletesiIdo" Type="datetime" />
+          <Property Name="SzuletesiHely" Type="nvarchar" MaxLength="60" />
+          <Property Name="Cegszam" Type="nvarchar" MaxLength="60" />
+          <Property Name="AnyjaNeve" Type="nvarchar" MaxLength="120" />
+          <Property Name="CegkepviseloNeve" Type="nvarchar" MaxLength="120" />
+          <Property Name="LepcsohazId" Type="int" Nullable="false" />
+          <Property Name="LakohelyEmelet" Type="nvarchar" MaxLength="10" />
+          <Property Name="LakohelyLakas" Type="nvarchar" MaxLength="10" />
+          <Property Name="SzamlazasiCim" Type="nvarchar" MaxLength="120" />
+          <Property Name="Cegszekhely" Type="nvarchar" MaxLength="120" />
+          <Property Name="Okmanyszam" Type="nvarchar" MaxLength="60" />
+          <Property Name="Telefonszam" Type="nvarchar" MaxLength="30" />
+          <Property Name="Bankszamlaszam" Type="nvarchar" MaxLength="30" />
+          <Property Name="ElofizetoEgyeni" Type="int" Nullable="false" />
+          <Property Name="IgenybevetelJogcime" Type="int" Nullable="false" />
+          <Property Name="SzolgaltatasKezdoIdopontja" Type="datetime" Nullable="false" />
+          <Property Name="HatarozottIdejuSzolgaltatasVege" Type="datetime" />
+          <Property Name="MegrendeltCsomagok" Type="int" Nullable="false" />
+          <Property Name="DijbefizetesModja" Type="int" Nullable="false" />
+          <Property Name="DifbefizetesUtemezese" Type="int" Nullable="false" />
+          <Property Name="CsBeszedKod" Type="nvarchar" MaxLength="10" />
+          <Property Name="ICUgyfelID" Type="int" />
+          <Property Name="Befizetve" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Elofizetes_KonstrukcioID_Konstrukcio_ID">
+          <End Role="Konstrukcio" Type="ukdbModel.Store.Konstrukcio" Multiplicity="1" />
+          <End Role="Elofizetes" Type="ukdbModel.Store.Elofizetes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Konstrukcio">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Elofizetes">
+              <PropertyRef Name="KonstrukcioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elofizetes_UgyfelID_Ugyfel_Id">
+          <End Role="Ugyfel" Type="ukdbModel.Store.Ugyfel" Multiplicity="1" />
+          <End Role="Elofizetes" Type="ukdbModel.Store.Elofizetes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ugyfel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Elofizetes">
+              <PropertyRef Name="UgyfelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FizetettIdoszak_ElofizetesID_Elofizetes_ID">
+          <End Role="Elofizetes" Type="ukdbModel.Store.Elofizetes" Multiplicity="1" />
+          <End Role="FizetettIdoszak" Type="ukdbModel.Store.FizetettIdoszak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elofizetes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FizetettIdoszak">
+              <PropertyRef Name="ElofizetesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UgyfelToLepcsohaz">
+          <End Role="Lepcsohaz" Type="ukdbModel.Store.Lepcsohaz" Multiplicity="1" />
+          <End Role="Ugyfel" Type="ukdbModel.Store.Ugyfel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lepcsohaz">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ugyfel">
+              <PropertyRef Name="LepcsohazId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ukdbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ukdbEntities6" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Beallitasok" EntityType="ukdbModel.Beallitasok" />
+          <EntitySet Name="Elofizetes" EntityType="ukdbModel.Elofizetes" />
+          <EntitySet Name="FizetettIdoszak" EntityType="ukdbModel.FizetettIdoszak" />
+          <EntitySet Name="InfoCentrumSzamlatomb" EntityType="ukdbModel.InfoCentrumSzamlatomb" />
+          <EntitySet Name="Konstrukcio" EntityType="ukdbModel.Konstrukcio" />
+          <EntitySet Name="Lepcsohaz" EntityType="ukdbModel.Lepcsohaz" />
+          <EntitySet Name="Operator" EntityType="ukdbModel.Operator" />
+          <EntitySet Name="SchemaInfo" EntityType="ukdbModel.SchemaInfo" />
+          <EntitySet Name="Ugyfel" EntityType="ukdbModel.Ugyfel" />
+          <AssociationSet Name="FK_Elofizetes_KonstrukcioID_Konstrukcio_ID" Association="ukdbModel.FK_Elofizetes_KonstrukcioID_Konstrukcio_ID">
+            <End Role="Konstrukcio" EntitySet="Konstrukcio" />
+            <End Role="Elofizetes" EntitySet="Elofizetes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elofizetes_UgyfelID_Ugyfel_Id" Association="ukdbModel.FK_Elofizetes_UgyfelID_Ugyfel_Id">
+            <End Role="Ugyfel" EntitySet="Ugyfel" />
+            <End Role="Elofizetes" EntitySet="Elofizetes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FizetettIdoszak_ElofizetesID_Elofizetes_ID" Association="ukdbModel.FK_FizetettIdoszak_ElofizetesID_Elofizetes_ID">
+            <End Role="Elofizetes" EntitySet="Elofizetes" />
+            <End Role="FizetettIdoszak" EntitySet="FizetettIdoszak" />
+          </AssociationSet>
+          <AssociationSet Name="UgyfelToLepcsohaz" Association="ukdbModel.UgyfelToLepcsohaz">
+            <End Role="Lepcsohaz" EntitySet="Lepcsohaz" />
+            <End Role="Ugyfel" EntitySet="Ugyfel" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Beallitasok">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Cegnev" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Adoazonosito" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Bankszamlaszam" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="IcSzamlaUtvonal" Type="String" MaxLength="512" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Elofizetes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UgyfelID" Type="Int32" Nullable="false" />
+          <Property Name="KonstrukcioID" Type="Int32" Nullable="false" />
+          <Property Name="Mettol" Type="DateTime" Precision="3" />
+          <Property Name="Meddig" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Konstrukcio" Relationship="ukdbModel.FK_Elofizetes_KonstrukcioID_Konstrukcio_ID" FromRole="Elofizetes" ToRole="Konstrukcio" />
+          <NavigationProperty Name="Ugyfel" Relationship="ukdbModel.FK_Elofizetes_UgyfelID_Ugyfel_Id" FromRole="Elofizetes" ToRole="Ugyfel" />
+          <NavigationProperty Name="FizetettIdoszak" Relationship="ukdbModel.FK_FizetettIdoszak_ElofizetesID_Elofizetes_ID" FromRole="Elofizetes" ToRole="FizetettIdoszak" />
+        </EntityType>
+        <EntityType Name="FizetettIdoszak">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ElofizetesID" Type="Int32" Nullable="false" />
+          <Property Name="Mettol" Type="DateTime" Precision="3" />
+          <Property Name="Meddig" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Elofizetes" Relationship="ukdbModel.FK_FizetettIdoszak_ElofizetesID_Elofizetes_ID" FromRole="FizetettIdoszak" ToRole="Elofizetes" />
+        </EntityType>
+        <EntityType Name="InfoCentrumSzamlatomb">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ICSzamlatombID" Type="Int32" Nullable="false" />
+          <Property Name="Elotag" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Utotag" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Hasznalt" Type="Int32" />
+          <Property Name="Nev" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Konstrukcio">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nev" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Ar" Type="Int32" />
+          <Property Name="Kod" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Elofizetes" Relationship="ukdbModel.FK_Elofizetes_KonstrukcioID_Konstrukcio_ID" FromRole="Konstrukcio" ToRole="Elofizetes" />
+        </EntityType>
+        <EntityType Name="Lepcsohaz">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Iranyitoszam" Type="String" Nullable="false" MaxLength="6" Unicode="true" FixedLength="false" />
+          <Property Name="Varos" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="Utca" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="Szam" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Ugyfel" Relationship="ukdbModel.UgyfelToLepcsohaz" FromRole="Lepcsohaz" ToRole="Ugyfel" />
+        </EntityType>
+        <EntityType Name="Operator">
+          <Key>
+            <PropertyRef Name="Felhasznalonev" />
+          </Key>
+          <Property Name="Felhasznalonev" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Jelszo" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SchemaInfo">
+          <Key>
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="Version" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ugyfel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nev" Type="String" Nullable="false" MaxLength="120" Unicode="true" FixedLength="false" />
+          <Property Name="SzuletesiIdo" Type="DateTime" Precision="3" />
+          <Property Name="SzuletesiHely" Type="String" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="Cegszam" Type="String" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="AnyjaNeve" Type="String" MaxLength="120" Unicode="true" FixedLength="false" />
+          <Property Name="CegkepviseloNeve" Type="String" MaxLength="120" Unicode="true" FixedLength="false" />
+          <Property Name="LepcsohazId" Type="Int32" Nullable="false" />
+          <Property Name="LakohelyEmelet" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="LakohelyLakas" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="SzamlazasiCim" Type="String" MaxLength="120" Unicode="true" FixedLength="false" />
+          <Property Name="Cegszekhely" Type="String" MaxLength="120" Unicode="true" FixedLength="false" />
+          <Property Name="Okmanyszam" Type="String" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="Telefonszam" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Bankszamlaszam" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="ElofizetoEgyeni" Type="Int32" Nullable="false" />
+          <Property Name="IgenybevetelJogcime" Type="Int32" Nullable="false" />
+          <Property Name="SzolgaltatasKezdoIdopontja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HatarozottIdejuSzolgaltatasVege" Type="DateTime" Precision="3" />
+          <Property Name="MegrendeltCsomagok" Type="Int32" Nullable="false" />
+          <Property Name="DijbefizetesModja" Type="Int32" Nullable="false" />
+          <Property Name="DifbefizetesUtemezese" Type="Int32" Nullable="false" />
+          <Property Name="CsBeszedKod" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="ICUgyfelID" Type="Int32" />
+          <NavigationProperty Name="Elofizetes" Relationship="ukdbModel.FK_Elofizetes_UgyfelID_Ugyfel_Id" FromRole="Ugyfel" ToRole="Elofizetes" />
+          <NavigationProperty Name="Lepcsohaz" Relationship="ukdbModel.UgyfelToLepcsohaz" FromRole="Ugyfel" ToRole="Lepcsohaz" />
+          <Property Type="Int32" Name="Befizetve" Nullable="false" DefaultValue="0" />
+        </EntityType>
+        <Association Name="FK_Elofizetes_KonstrukcioID_Konstrukcio_ID">
+          <End Role="Konstrukcio" Type="ukdbModel.Konstrukcio" Multiplicity="1" />
+          <End Role="Elofizetes" Type="ukdbModel.Elofizetes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Konstrukcio">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Elofizetes">
+              <PropertyRef Name="KonstrukcioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elofizetes_UgyfelID_Ugyfel_Id">
+          <End Role="Ugyfel" Type="ukdbModel.Ugyfel" Multiplicity="1" />
+          <End Role="Elofizetes" Type="ukdbModel.Elofizetes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ugyfel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Elofizetes">
+              <PropertyRef Name="UgyfelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FizetettIdoszak_ElofizetesID_Elofizetes_ID">
+          <End Role="Elofizetes" Type="ukdbModel.Elofizetes" Multiplicity="1" />
+          <End Role="FizetettIdoszak" Type="ukdbModel.FizetettIdoszak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elofizetes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FizetettIdoszak">
+              <PropertyRef Name="ElofizetesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UgyfelToLepcsohaz">
+          <End Role="Lepcsohaz" Type="ukdbModel.Lepcsohaz" Multiplicity="1" />
+          <End Role="Ugyfel" Type="ukdbModel.Ugyfel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lepcsohaz">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ugyfel">
+              <PropertyRef Name="LepcsohazId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ukdbModelStoreContainer" CdmEntityContainer="ukdbEntities6">
+          <EntitySetMapping Name="Beallitasok">
+            <EntityTypeMapping TypeName="ukdbModel.Beallitasok">
+              <MappingFragment StoreEntitySet="Beallitasok">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Cegnev" ColumnName="Cegnev" />
+                <ScalarProperty Name="Adoazonosito" ColumnName="Adoazonosito" />
+                <ScalarProperty Name="Bankszamlaszam" ColumnName="Bankszamlaszam" />
+                <ScalarProperty Name="IcSzamlaUtvonal" ColumnName="IcSzamlaUtvonal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Elofizetes">
+            <EntityTypeMapping TypeName="ukdbModel.Elofizetes">
+              <MappingFragment StoreEntitySet="Elofizetes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UgyfelID" ColumnName="UgyfelID" />
+                <ScalarProperty Name="KonstrukcioID" ColumnName="KonstrukcioID" />
+                <ScalarProperty Name="Mettol" ColumnName="Mettol" />
+                <ScalarProperty Name="Meddig" ColumnName="Meddig" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FizetettIdoszak">
+            <EntityTypeMapping TypeName="ukdbModel.FizetettIdoszak">
+              <MappingFragment StoreEntitySet="FizetettIdoszak">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ElofizetesID" ColumnName="ElofizetesID" />
+                <ScalarProperty Name="Mettol" ColumnName="Mettol" />
+                <ScalarProperty Name="Meddig" ColumnName="Meddig" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoCentrumSzamlatomb">
+            <EntityTypeMapping TypeName="ukdbModel.InfoCentrumSzamlatomb">
+              <MappingFragment StoreEntitySet="InfoCentrumSzamlatomb">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ICSzamlatombID" ColumnName="ICSzamlatombID" />
+                <ScalarProperty Name="Elotag" ColumnName="Elotag" />
+                <ScalarProperty Name="Utotag" ColumnName="Utotag" />
+                <ScalarProperty Name="Hasznalt" ColumnName="Hasznalt" />
+                <ScalarProperty Name="Nev" ColumnName="Nev" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Konstrukcio">
+            <EntityTypeMapping TypeName="ukdbModel.Konstrukcio">
+              <MappingFragment StoreEntitySet="Konstrukcio">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nev" ColumnName="Nev" />
+                <ScalarProperty Name="Ar" ColumnName="Ar" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lepcsohaz">
+            <EntityTypeMapping TypeName="ukdbModel.Lepcsohaz">
+              <MappingFragment StoreEntitySet="Lepcsohaz">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Iranyitoszam" ColumnName="Iranyitoszam" />
+                <ScalarProperty Name="Varos" ColumnName="Varos" />
+                <ScalarProperty Name="Utca" ColumnName="Utca" />
+                <ScalarProperty Name="Szam" ColumnName="Szam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operator">
+            <EntityTypeMapping TypeName="ukdbModel.Operator">
+              <MappingFragment StoreEntitySet="Operator">
+                <ScalarProperty Name="Felhasznalonev" ColumnName="Felhasznalonev" />
+                <ScalarProperty Name="Jelszo" ColumnName="Jelszo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchemaInfo">
+            <EntityTypeMapping TypeName="ukdbModel.SchemaInfo">
+              <MappingFragment StoreEntitySet="SchemaInfo">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ugyfel">
+            <EntityTypeMapping TypeName="ukdbModel.Ugyfel">
+              <MappingFragment StoreEntitySet="Ugyfel">
+                <ScalarProperty Name="Befizetve" ColumnName="Befizetve" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nev" ColumnName="Nev" />
+                <ScalarProperty Name="SzuletesiIdo" ColumnName="SzuletesiIdo" />
+                <ScalarProperty Name="SzuletesiHely" ColumnName="SzuletesiHely" />
+                <ScalarProperty Name="Cegszam" ColumnName="Cegszam" />
+                <ScalarProperty Name="AnyjaNeve" ColumnName="AnyjaNeve" />
+                <ScalarProperty Name="CegkepviseloNeve" ColumnName="CegkepviseloNeve" />
+                <ScalarProperty Name="LepcsohazId" ColumnName="LepcsohazId" />
+                <ScalarProperty Name="LakohelyEmelet" ColumnName="LakohelyEmelet" />
+                <ScalarProperty Name="LakohelyLakas" ColumnName="LakohelyLakas" />
+                <ScalarProperty Name="SzamlazasiCim" ColumnName="SzamlazasiCim" />
+                <ScalarProperty Name="Cegszekhely" ColumnName="Cegszekhely" />
+                <ScalarProperty Name="Okmanyszam" ColumnName="Okmanyszam" />
+                <ScalarProperty Name="Telefonszam" ColumnName="Telefonszam" />
+                <ScalarProperty Name="Bankszamlaszam" ColumnName="Bankszamlaszam" />
+                <ScalarProperty Name="ElofizetoEgyeni" ColumnName="ElofizetoEgyeni" />
+                <ScalarProperty Name="IgenybevetelJogcime" ColumnName="IgenybevetelJogcime" />
+                <ScalarProperty Name="SzolgaltatasKezdoIdopontja" ColumnName="SzolgaltatasKezdoIdopontja" />
+                <ScalarProperty Name="HatarozottIdejuSzolgaltatasVege" ColumnName="HatarozottIdejuSzolgaltatasVege" />
+                <ScalarProperty Name="MegrendeltCsomagok" ColumnName="MegrendeltCsomagok" />
+                <ScalarProperty Name="DijbefizetesModja" ColumnName="DijbefizetesModja" />
+                <ScalarProperty Name="DifbefizetesUtemezese" ColumnName="DifbefizetesUtemezese" />
+                <ScalarProperty Name="CsBeszedKod" ColumnName="CsBeszedKod" />
+                <ScalarProperty Name="ICUgyfelID" ColumnName="ICUgyfelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

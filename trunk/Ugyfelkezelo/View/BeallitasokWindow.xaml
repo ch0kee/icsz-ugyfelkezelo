@@ -1,0 +1,32 @@
+﻿<Window x:Class="Ugyfelkezelo.View.BeallitasokWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Ugyfelkezelo.Controls"
+        Title="BeallitasokWindow" Height="238" Width="535" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="257*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,10" TextAlignment="Right" Width="100" Text="Cégnév "/>
+                <TextBox Width="300" Margin="10" Text="{Binding Path=Cegnev}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,10" TextAlignment="Right" Width="100" Text="Adószám "/>
+                <TextBox Width="300" Margin="10" Text="{Binding Path=Adoazonosito}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,10" TextAlignment="Right" Width="100" Text="Bankszámlaszám"/>
+                <TextBox Width="300" Margin="10" Text="{Binding Bankszamlaszam}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,10" HorizontalAlignment="Left" TextWrapping="Wrap" Width="100">Adatbázis elérési útvonala</TextBlock>
+                <Controls:PathPicker DefaultExtension="FDB" FilterString="FireBird Database" PickedPath="{Binding IcSzamlaUtvonal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </StackPanel>
+        <Button Command="{Binding SaveCommand}" VerticalAlignment="Bottom" Margin="222,0,216,10" Content="Mentés" Height="23" Name="button1" Width="75" />
+    </Grid>
+</Window>

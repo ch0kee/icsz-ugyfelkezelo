@@ -1,0 +1,21 @@
+﻿* infocentrum ha nem volt módosítva azóta akkor ne töltsük be újra
+
+8/A-ban hány BASIC-es van
+Lé
+
+
+? Szolgáltatás kezdőidőpontját kötelezővé kell tenni
+
+? Ügyfélbevitel adatellenőrzés (félig kész)
+? Lépcsőház módosításakor frissüljön az ügyfél datagrid
+
+? Olyan funkció, hogy a megrendelt csomagok alapján tartozásokat generál.
+Egy listában ki lehet ixelni, hogy ki szünetel, a többinek a rendelt csomagnak
+megfelelően felíródik egy tartozás. Ha valakinek kedvezményes valamelyik csomag,
+akkor ahhoz új csomagot kell létrehozni.
+
+? Valamiert csak process killel tudom kinyirni
+
+? Egyéni/Előfizető, váltáskor töröljük ki a régi mezőket
+
+? Lejárt előfizetések könyvelése
