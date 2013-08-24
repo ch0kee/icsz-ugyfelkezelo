@@ -23,17 +23,10 @@ namespace Ugyfelkezelo.Controls
             InitializeComponent();
         }
 
-        private void Window_Deactivated(object sender, EventArgs e)
-        {
-            if (!_isclosing)
-                Close();
-        }
 
-        bool _isclosing = false;
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_LostFocus(object sender, RoutedEventArgs e)
         {
-            _isclosing = true;
+            Close();
         }
     }
 }

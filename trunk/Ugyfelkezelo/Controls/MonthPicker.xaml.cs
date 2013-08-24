@@ -19,16 +19,25 @@ namespace Ugyfelkezelo.Controls
     /// </summary>
     public partial class MonthPicker : UserControl
     {
-        MonthPickerModel _Model;
+        public MonthPickerModel _Model;
+
         public MonthPicker()
         {
             InitializeComponent();
             _Model = new MonthPickerModel();
             this.DataContext = _Model;
             StoredYear = StoredMonth = 0;
+            MonthsDiagramPopup.DataContext = _Model;
+
+            /*
+            _Model.CloseWindow += (s, ev) =>
+            {
+                StoredYear = _Model.SelectedYear;
+                StoredMonth = _Model.SelectedMonthIndex;
+                _MonthsDiagramWindow.Close();
+            };*/
         }
 
-        public String SelectedMonth { get; set; }
 
         public Int32 StoredYear { get; private set; }
         public Int32 StoredMonth { get; private set; }
@@ -36,21 +45,30 @@ namespace Ugyfelkezelo.Controls
         public bool IsMonthPicked { get { return StoredYear != 0 && StoredMonth != 0; } }
 
         
-        private void TextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+        private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            MonthsDiagramPopup.IsOpen = true;
+            e.Handled = false;
+         //   MonthsDiagramPopup.Focus();
+            /*
             //hónapválasztó megnyitása
-            MonthsDiagramWindow mdw = new MonthsDiagramWindow();
+            MonthsDiagramPopup mdw = new MonthsDiagramWindow();
             mdw.DataContext = _Model;
-            _Model.CloseWindow += (s, ev) => {
-                StoredYear = _Model.SelectedYear;
-                StoredMonth = _Model.SelectedMonthIndex;
-                mdw.Close();             
-            };
+
             Point parentAbsPos = this.PointToScreen(new Point(0.0, 0.0));
             mdw.Top = parentAbsPos.Y - mdw.Height;
             mdw.Left = parentAbsPos.X;
-            mdw.Show();
+            mdw.Show();*/
         }
+
+        private void TextBox_PreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            MonthsDiagramPopup.IsOpen = false;
+        }
+
+
+
 
     }
 
