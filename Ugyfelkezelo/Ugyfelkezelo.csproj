@@ -153,6 +153,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\MonthsDiagramControl.xaml.cs">
+      <DependentUpon>MonthsDiagramControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PathPicker.xaml.cs">
       <DependentUpon>PathPicker.xaml</DependentUpon>
     </Compile>
@@ -267,6 +270,10 @@
       <DependentUpon>ManageElofizetesekWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\MonthPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MonthsDiagramControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,8 +1,11 @@
-﻿<Window x:Class="Ugyfelkezelo.Controls.MonthsDiagramWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MonthsDiagramWindow" Height="220" Width="213" WindowStyle="None"  ResizeMode="NoResize" LostFocus="Window_LostFocus">
-    <Window.Resources>
+﻿<UserControl x:Class="Ugyfelkezelo.Controls.MonthsDiagramControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Height="220" Width="213" Background="White">
+    <UserControl.Resources>
         <Style x:Key="MyFocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -102,15 +105,15 @@
         <Style x:Key="YearDisplayStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="FontSize" Value="15" />
-            
+
         </Style>
         <Style x:Key="MonthDisplayStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource YearDisplayStyle}">
         </Style>
 
-    </Window.Resources>
+    </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" /> 
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -119,10 +122,10 @@
             <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
         <!--Ev-->
-        <Button Margin="2" Command="{Binding PreviousYearCommand}" Grid.Row="0" Grid.Column="0" Content="&lt;" Style="{StaticResource PagerButtonStyle}" />
-        <Button Margin="2" Command="{Binding NextYearCommand}" Grid.Row="0" Grid.Column="2" Content="&gt;" Style="{StaticResource PagerButtonStyle}" />
+        <Button Margin="2" Command="{Binding PreviousYearCommand}" Grid.Row="0" Grid.Column="0" Content="&lt;" Style="{StaticResource PagerButtonStyle}" PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown" />
+        <Button Margin="2" Command="{Binding NextYearCommand}" Grid.Row="0" Grid.Column="2" Content="&gt;" Style="{StaticResource PagerButtonStyle}" PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown" />
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedYear}" Style="{StaticResource YearDisplayStyle}" />
-        
+
         <!--Naptar-->
         <ItemsControl Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Months}">
             <ItemsControl.ItemsPanel>
@@ -150,4 +153,4 @@
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
     </Grid>
-</Window>
+</UserControl>

@@ -55,6 +55,16 @@ namespace Ugyfelkezelo.Controls
             SetCurrentYear(DateTime.Today.Year);
         }
 
+        public string SelectedDate
+        {
+            get
+            {
+                return String.Format("{0}. {1}. hónap ({2})", SelectedYear, Months[SelectedMonthIndex].Index+1, Months[SelectedMonthIndex].Name);
+            }
+            set
+            {
+            }
+        }
 
 
         public DelegateCommand PreviousYearCommand { get; set; }
@@ -67,6 +77,7 @@ namespace Ugyfelkezelo.Controls
         {
             SelectedYear = yy;
             OnPropertyChanged("SelectedYear");
+            OnPropertyChanged("SelectedDate");
         }
 
         private void SetCurrentMonth(int mm)
@@ -75,6 +86,7 @@ namespace Ugyfelkezelo.Controls
             SelectedMonthIndex = mm;
             Months[SelectedMonthIndex].Enabled = true;
             OnPropertyChanged("SelectedMonth");
+            OnPropertyChanged("SelectedDate");
         }
 
         private void SelectMonthExecuted(object o)
