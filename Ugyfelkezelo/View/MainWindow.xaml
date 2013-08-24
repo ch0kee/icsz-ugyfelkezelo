@@ -1,0 +1,322 @@
+﻿<Window x:Class="Ugyfelkezelo.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+        xmlns:my="clr-namespace:Ugyfelkezelo.Controls" WindowState="Maximized"
+        Title="Ügyfélkezelő" Height="487" Width="1204" Background="#FFCADDEB" BorderBrush="Black" BorderThickness="5" FontFamily="Verdana" FontSize="15" >
+
+    <Window.Resources>
+        <Style TargetType="{x:Type TabItem}" >
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style TargetType="{x:Type DataGrid}" >
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="AlternatingRowBackground" Value="#FFFFFF" /> 
+            <Setter Property="RowBackground" Value="#EEEEEE" />
+            <Setter Property="AlternationCount" Value="1" />
+            
+        </Style>
+
+        <ControlTemplate x:Key="BasicPB" TargetType="{x:Type ProgressBar}">
+            <Grid>
+                <Border Name="PART_Track" BorderBrush="DarkGray"
+               BorderThickness="2" CornerRadius="3" >
+                    <Rectangle Fill="LightGray"
+               RadiusX="3" RadiusY="3"/>
+                </Border>
+                <Rectangle Name="PART_Indicator" HorizontalAlignment="Left"
+                    RadiusX="3" RadiusY="3" 
+                    Margin="2,2,2,2">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                            <GradientStop Color="#FF5FBB23" Offset="0.525"/>
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="#FF63BC28"/>
+                            <GradientStop Color="#FF95EDA5" Offset="0.542"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ReverseBasicPB" TargetType="{x:Type ProgressBar}">
+            <Grid>
+                <Border Name="PART_Track" BorderBrush="DarkGray"
+               BorderThickness="2" CornerRadius="3" >
+                    <Rectangle Fill="LightGray"
+               RadiusX="3" RadiusY="3"/>
+                </Border>
+                <Rectangle Name="PART_Indicator" HorizontalAlignment="Right"
+                    RadiusX="3" RadiusY="3" 
+                    Margin="2,2,2,2">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                            <GradientStop Color="#FF5FBB23" Offset="0.525"/>
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="#FF63BC28"/>
+                            <GradientStop Color="#FF95EDA5" Offset="0.542"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" /> 
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Menu   IsMainMenu="True" Grid.Row="0" Padding="3" BorderBrush="Black" BorderThickness="1" FontFamily="Verdana" FontSize="12" >
+            <MenuItem Header="Ügyfelek">
+                <MenuItem Header="Új ügyfél..." Command="{Binding Path=UgyfelViewModel.NewCommand}" />
+                <MenuItem Header="Ügyfél módosítása..."
+            Command="{Binding Path=UgyfelViewModel.ModifyCommand}" CommandParameter="{Binding ElementName=ugyfelekDataGrid, Path=SelectedItem}">
+                    <MenuItem.Style>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedIndex,ElementName=ugyfelekDataGrid}" Value="-1">
+                                    <Setter Property="IsEnabled" Value="False "/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+
+                </MenuItem>
+                <MenuItem Header="Ügyfél törlése"
+            Command="{Binding Path=UgyfelViewModel.DeleteCommand}" CommandParameter="{Binding ElementName=ugyfelekDataGrid, Path=SelectedItem}">
+                    <MenuItem.Style>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedIndex,ElementName=ugyfelekDataGrid}" Value="-1">
+                                    <Setter Property="IsEnabled" Value="False "/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+            <!--</MenuItem>
+            <MenuItem Header="Lépcsőházak">-->
+                <Separator />
+                <MenuItem Header="Új lépcsőház..." Command="{Binding Path=LepcsohazViewModel.NewCommand}" />
+                <MenuItem Header="Lépcsőház módosítása..."
+            Command="{Binding Path=LepcsohazViewModel.ModifyCommand}" CommandParameter="{Binding ElementName=lepcsohazakDataGrid, Path=SelectedItem}">
+                    <MenuItem.Style>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedIndex,ElementName=lepcsohazakDataGrid}" Value="-1">
+                                    <Setter Property="IsEnabled" Value="False "/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+
+                </MenuItem>
+                <MenuItem Header="Lépcsőház törlése"
+            Command="{Binding Path=LepcsohazViewModel.DeleteCommand}" CommandParameter="{Binding ElementName=lepcsohazakDataGrid, Path=SelectedItem}">
+                    <MenuItem.Style>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedIndex,ElementName=lepcsohazakDataGrid}" Value="-1">
+                                    <Setter Property="IsEnabled" Value="False "/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Előfizetések">
+                <MenuItem Header="Előfizetések kezelése..."
+                          Command="{Binding Path=ElofizetesViewModel.ManageElofizetesekCommand}">                    
+                </MenuItem>
+                <MenuItem Header="Előfizetés törlése"
+                Command="{Binding Path=ElofizetesViewModel.DeleteCommand}" CommandParameter="{Binding ElementName=elofizetesekDataGrid, Path=SelectedItem}">
+                    <MenuItem.Style>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedIndex,ElementName=elofizetesekDataGrid}" Value="-1">
+                                    <Setter Property="IsEnabled" Value="False "/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+                <Separator />
+                <MenuItem IsEnabled="False" Header="Fizetett időszakok kezelése..." />
+                <Separator />
+                <MenuItem Header="Új konstrukció..." Command="{Binding Path=KonstrukcioViewModel.NewCommand}" />
+                <MenuItem Header="Konstrukció módosítása..."
+            Command="{Binding Path=KonstrukcioViewModel.ModifyCommand}" CommandParameter="{Binding ElementName=konstrukciokDataGrid, Path=SelectedItem}">
+                    <MenuItem.Style>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedIndex,ElementName=konstrukciokDataGrid}" Value="-1">
+                                    <Setter Property="IsEnabled" Value="False "/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+                <MenuItem Header="Konstrukció törlése"
+            Command="{Binding Path=KonstrukcioViewModel.DeleteCommand}" CommandParameter="{Binding ElementName=konstrukciokDataGrid, Path=SelectedItem}">
+                    <MenuItem.Style>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedIndex,ElementName=konstrukciokDataGrid}" Value="-1">
+                                    <Setter Property="IsEnabled" Value="False "/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Műveletek">
+                <MenuItem Header="Kijelölt ügyfeleknek előfizetések generálása szerződés alapján..." Command="{Binding Path=AutoBindContracts}"  />
+                <MenuItem Header="Kijelölt előfizetések kezdődátumának beállítása..." Command="{Binding Path=ElofizetesKezdodatumCommand}" />
+                <Separator />
+                <MenuItem Header="Csoportos beszedési megbízás..." Command="{Binding OpenCSBESZEDWindow}" />
+                <MenuItem Header="Jelenlegi nézeten minden kijelölt elem törlése" Command="{Binding DeleteKeyCommand}" />
+            </MenuItem>
+            <MenuItem Header="Beállítások">
+                <MenuItem Header="Saját adatok..." Command="{Binding SettingsCommand}"  />
+                <MenuItem Header="InfoCentrum Számlázó..." Command="{Binding InfoCentrumSettingsCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Súgó">
+                <MenuItem Header="Előfizetések" Command="{Binding OpenHelpWindow}" CommandParameter="Help\UgyfelkezeloSugo.htm" />                
+            </MenuItem>
+            
+        </Menu>
+
+        <TabControl Grid.Row="2" Name="tabControl1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" SelectedItem="{Binding CurrentTab, Mode=OneWayToSource}">
+            <TabItem Header="Ügyfelek"  Name="tabItem1">
+                <DataGrid  SelectionChanged="ugyfelekDataGrid_SelectionChanged" SelectionMode="Extended" IsReadOnly="True" AutoGenerateColumns="False"
+                    ItemsSource="{Binding Path=UgyfelViewModel.Items}" CanUserAddRows="False" CanUserDeleteRows="False" Name="ugyfelekDataGrid">
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="#FF0000"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#990000"/>
+                    </DataGrid.Resources>
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete"  Command="{Binding DeleteKeyCommand}" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Név" Binding="{Binding Nev}" />
+                        <DataGridTextColumn Header="Lakóhely"  Binding="{Binding Cim}" />
+                        <DataGridTextColumn Visibility="Hidden" Header="Számlázási cím"  Binding="{Binding SzamlazasiCim2}" />
+                        <DataGridTextColumn Header="Befizetett számlák ellenértéke"  Binding="{Binding Befizetve}" />
+                        <DataGridTextColumn Header="Tartozás"  Binding="{Binding Tartozas}" />
+                        <DataGridTextColumn Visibility="Hidden" Header="Okmányszám"  Binding="{Binding Okmanyszam}" />
+                        <DataGridTextColumn Visibility="Hidden" Header="Telefonszám"  Binding="{Binding Nev}" />
+                        <DataGridTextColumn Visibility="Hidden" Header="Bankszámlaszám"  Binding="{Binding Bankszamlaszam}" />
+                        <DataGridTextColumn Visibility="Hidden" Header="Egyéni előfizető"  Binding="{Binding Nev}" />
+                        <DataGridTextColumn Visibility="Hidden" Header="Igénybevétel jogcíme"  Binding="{Binding Nev}" />
+                        <DataGridTextColumn Visibility="Hidden" Header="Szolgáltatás kezdő időpontja"  Binding="{Binding Nev}" />
+                        <DataGridTextColumn Visibility="Hidden" Header="Szolgáltatás időtartama"  Binding="{Binding Nev}" />
+                        <DataGridTextColumn Header="Megrendelt csomagok"  Binding="{Binding PrettyMegrendeltCsomagok}" />
+                        <DataGridTextColumn Header="Díjbefizetés módja"  Binding="{Binding PrettyDijbefizetesModja}" />
+                        <DataGridTextColumn Header="Díjbefizetés ütemezése"  Binding="{Binding PrettyDijbefizetesUtemezese}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Lépcsőházak"  Name="tabItem2"  >
+                <DataGrid SelectionChanged="lepcsohazakDataGrid_SelectionChanged"  SelectionMode="Extended" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path=LepcsohazViewModel.Items}"
+                          CanUserAddRows="False" CanUserDeleteRows="False" Name="lepcsohazakDataGrid" >
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete"  Command="{Binding DeleteKeyCommand}" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="#FF0000"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#990000"/>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Irányítószám" Binding="{Binding Iranyitoszam}" />
+                        <DataGridTextColumn Header="Város"  Binding="{Binding Varos}" />
+                        <DataGridTextColumn Header="Utca" Binding="{Binding Utca}" />
+                        <DataGridTextColumn Header="Szám"  Binding="{Binding Szam}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Konstrukciók"  Name="tabItem3" >
+                <DataGrid SelectionChanged="konstrukciokDataGrid_SelectionChanged" SelectionMode="Extended" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path=KonstrukcioViewModel.Items}"
+                      CanUserAddRows="False" CanUserDeleteRows="False" Name="konstrukciokDataGrid" >
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete"  Command="{Binding DeleteKeyCommand}" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="#FF0000"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#990000"/>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Név" Binding="{Binding Nev}" />
+                        <DataGridTextColumn Header="Ár" Binding="{Binding Ar}" />
+                        <DataGridTextColumn Header="Kód" Binding="{Binding Kod}"  />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Előfizetések"  Name="tabItem4" >
+                <DataGrid SelectionChanged="elofizetesekDataGrid_SelectionChanged"  SelectionMode="Extended" IsReadOnly="True" AutoGenerateColumns="False"
+                    ItemsSource="{Binding Path=ElofizetesViewModel.Items}" CanUserAddRows="False" CanUserDeleteRows="False" Name="elofizetesekDataGrid">
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete"  Command="{Binding DeleteKeyCommand}" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                   Color="#FF0000"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#990000"/>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Ügyfél neve" Binding="{Binding Path=Ugyfel.Nev}" />
+                        <DataGridTextColumn Header="Lakóhely"  Binding="{Binding Path=Ugyfel.Cim}" />
+                        <DataGridTextColumn Header="Csomagnév" Binding="{Binding Path=Konstrukcio.Nev}" />
+                        <DataGridTextColumn Header="Csomagár" Binding="{Binding Path=Konstrukcio.Ar}" />
+                        <DataGridTextColumn Header="Nyitó hónap"  Binding="{Binding ElsoHonap}" />
+                        <DataGridTextColumn Header="Záró hónap"  Binding="{Binding UtolsoHonap}" />
+                        <DataGridTextColumn Header="Első fizetendő hónap"  Binding="{Binding ElsoFizetendoHonap}" />
+                        <DataGridTextColumn Header="Utolsó fizetendő hónap"  Binding="{Binding UtolsoFizetendoHonap}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        <StatusBar Grid.Row="3" >
+            <!--
+            <StatusBarItem>
+                <my:MonthPicker />
+            </StatusBarItem>
+            -->
+            <StatusBarItem>
+                <TextBlock Text="{Binding StatusBarText}" />
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <ProgressBar Template="{StaticResource BasicPB}" Name="progressBar" Width="80" Height="20"   Minimum="0" Maximum="100" Value="{Binding ProgressBarValue, Mode=OneWay}">
+                    <ProgressBar.Triggers>
+                        <EventTrigger RoutedEvent="Window.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="progressBar" 
+                       Storyboard.TargetProperty="Value" From="0" To="100" 
+                       Duration="0:0:1" BeginTime="0:0:0"/>
+                                    <DoubleAnimation Storyboard.TargetName="progressBar" 
+                       Storyboard.TargetProperty="Value" From="0" To="0" 
+                       Duration="0:0:0" BeginTime="0:0:1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ProgressBar.Triggers>
+                </ProgressBar>
+            </StatusBarItem>
+
+        </StatusBar>
+    </Grid>
+</Window>

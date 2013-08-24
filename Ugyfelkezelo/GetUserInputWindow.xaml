@@ -1,0 +1,15 @@
+﻿<Window x:Class="Ugyfelkezelo.GetUserInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GetUserInputWindow" Height="123" Width="350" ResizeMode="NoResize">
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="HeaderText" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" TextAlignment="Center" Text="TextBlock" />
+        <Button Grid.Row="2" Width="100" Content="Rendben" Margin="10,0,232,0" Click="Button_Click_Ok" />
+        <Button Grid.Row="2" Width="100" Content="Mégsem" Margin="232,0,10,0" Click="Button_Click_Cancel" />
+    </Grid>
+</Window>

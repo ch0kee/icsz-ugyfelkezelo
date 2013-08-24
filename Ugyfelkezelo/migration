@@ -1,0 +1,16 @@
+migration "UgyfelKezeloDB Migration" revision => 1:
+    type-aliases:
+        type-alias N type => String, length => 200, nullable => false, default => ""
+        type-alias D type => Date, nullable => false
+        type-alias DNIL type => Date, nullable => true
+    defaults:
+        default-primary-key ID type => Int32, nullable => false, identity => true
+        
+    version 20090226100407:
+        FizetettIdoszakok:
+            Mettol type => "date?"
+            Meddig type => "date"
+
+    version 20090226100407:
+        alter table Ugyfel:
+            remove column Kod1 

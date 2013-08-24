@@ -1,0 +1,8 @@
+﻿<Window x:Class="Ugyfelkezelo.View.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="HelpWindow" Height="362" Width="522">
+    <Grid>
+        <WebBrowser   HorizontalAlignment="Stretch" Name="webBrowser" VerticalAlignment="Stretch" />
+    </Grid>
+</Window>

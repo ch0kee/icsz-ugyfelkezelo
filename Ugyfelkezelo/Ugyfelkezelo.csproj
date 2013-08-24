@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C3A14E23-7EFC-407E-9187-351DD132ABC9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ugyfelkezelo</RootNamespace>
+    <AssemblyName>Ugyfelkezelo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>E:\UgyfelkezeloWPF\UgyfelkezeloPublish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\CH0KEE-PC\UgyfelkezeloPublish\</InstallUrl>
+    <TargetCulture>hu</TargetCulture>
+    <ProductName>LakótelepÜgyfélkezelő</ProductName>
+    <PublisherName>Vida László</PublisherName>
+    <MinimumRequiredVersion>4.0.0.6</MinimumRequiredVersion>
+    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <ExcludeDeploymentUrl>true</ExcludeDeploymentUrl>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>AE3C8CEBA1101619F74861563E665C48DB73C149</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Ugyfelkezelo_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>folder_home.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=3.0.2.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\FirebirdClient\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp-WPF">
+      <HintPath>PDFsharp-MigraDocFoundation-Assemblies-1_32\WPF\PdfSharp-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, PublicKeyToken=89845dcd8080cc91">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controls\PathPicker.xaml.cs">
+      <DependentUpon>PathPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Deployment.cs" />
+    <Compile Include="GetUserInput.cs" />
+    <Compile Include="GetUserInputWindow.xaml.cs">
+      <DependentUpon>GetUserInputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Beallitasok.cs">
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CsoportosBeszedes.cs" />
+    <Compile Include="Common\DateSpan.cs" />
+    <Compile Include="Model\Elofizetes.cs">
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ExtendDatabaseClasses.cs" />
+    <Compile Include="Model\FirebirdDbReader.cs" />
+    <Compile Include="Model\FizetettIdoszak.cs">
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\InfoCentrumSzamlatomb.cs">
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Konstrukcio.cs">
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Lepcsohaz.cs">
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MonthlyFee.cs" />
+    <Compile Include="Model\Operator.cs">
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Payments.cs" />
+    <Compile Include="Model\SchemaInfo.cs">
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ugyfel.cs">
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UgyfelkezeloEntityModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UgyfelkezeloEntityModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UgyfelkezeloEntityModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UgyfelkezeloEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UgyfelkezeloEntityModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UgyfelkezeloEntityModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UKModel.cs" />
+    <Compile Include="Pdf\PdfWriter.cs" />
+    <Compile Include="Controls\MonthDescriptor.cs" />
+    <Compile Include="Controls\MonthPicker.xaml.cs">
+      <DependentUpon>MonthPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MonthPickerModel.cs" />
+    <Compile Include="Controls\MonthsDiagramWindow.xaml.cs">
+      <DependentUpon>MonthsDiagramWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModelWithView.cs" />
+    <Compile Include="ViewModel\CommandWithEvent.cs" />
+    <Compile Include="ViewModel\Converters\BankszamlaszamConverter.cs" />
+    <Compile Include="ViewModel\Converters\BoolToVisibleOrHidden.cs" />
+    <Compile Include="ViewModel\Converters\ByteBoolConverter.cs" />
+    <Compile Include="ViewModel\Converters\BitMaskConverter.cs" />
+    <Compile Include="ViewModel\Converters\SzolgaltatasIdotartamaConverter.cs" />
+    <Compile Include="ViewModel\Modules\BeallitasokViewModel.cs" />
+    <Compile Include="ViewModel\Modules\CsoportosBeszedesiMegbizasViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModelWithDelete.cs" />
+    <Compile Include="ViewModel\Modules\ElofizetesViewModel.cs" />
+    <Compile Include="ViewModel\DelegateCommand.cs" />
+    <Compile Include="ViewModel\EntityViewModel.cs" />
+    <Compile Include="ViewModel\EntityViewModelWithEditWindow.cs" />
+    <Compile Include="ViewModel\Modules\InfoCentrumViewModel.cs" />
+    <Compile Include="ViewModel\Modules\KonstrukcioViewModel.cs" />
+    <Compile Include="ViewModel\Modules\LepcsohazViewModel.cs" />
+    <Compile Include="ViewModel\UgyfelkezeloViewModel.cs" />
+    <Compile Include="ViewModel\Modules\UgyfelViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\BeallitasokWindow.xaml.cs">
+      <DependentUpon>BeallitasokWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CsoportosBeszedesiMegbizasWindow.xaml.cs">
+      <DependentUpon>CsoportosBeszedesiMegbizasWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditElofizetesWindow.xaml.cs">
+      <DependentUpon>EditElofizetesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditKonstrukcioWindow.xaml.cs">
+      <DependentUpon>EditKonstrukcioWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditLepcsohazWindow.xaml.cs">
+      <DependentUpon>EditLepcsohazWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditUgyfelWindow.xaml.cs">
+      <DependentUpon>EditUgyfelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InfocentrumBeallitasokWindow.xaml.cs">
+      <DependentUpon>InfocentrumBeallitasokWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageElofizetesekWindow.xaml.cs">
+      <DependentUpon>ManageElofizetesekWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\MonthPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MonthsDiagramWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PathPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GetUserInputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BeallitasokWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CsoportosBeszedesiMegbizasWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditElofizetesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditKonstrukcioWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditLepcsohazWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\InfocentrumBeallitasokWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\EditUgyfelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageElofizetesekWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Help\UgyfelkezeloSugo.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ukdb.sdf" />
+    <EntityDeploy Include="Model\UgyfelkezeloEntityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UgyfelkezeloEntityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\UgyfelkezeloEntityModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UgyfelkezeloEntityModel.edmx</DependentUpon>
+      <LastGenOutput>UgyfelkezeloEntityModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model\UgyfelkezeloEntityModel.edmx.diagram">
+      <DependentUpon>UgyfelkezeloEntityModel.edmx</DependentUpon>
+    </None>
+    <None Include="Model\UgyfelkezeloEntityModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UgyfelkezeloEntityModel.edmx</DependentUpon>
+      <LastGenOutput>UgyfelkezeloEntityModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <Content Include="Patches\v8.sqlce" />
+    <Content Include="Patches\v9.sqlce" />
+    <Content Include="Patches\v10.sqlce" />
+    <Content Include="Patches\v11.sqlce" />
+    <Content Include="Patches\v12.sqlce" />
+    <Content Include="Patches\v13.sqlce" />
+    <Content Include="Patches\v14.sqlce" />
+    <None Include="Properties\DataSources\Ugyfelkezelo.Model.LakotelepUgyfelkezeloEntities2.datasource" />
+    <None Include="Properties\DataSources\Ugyfelkezelo.Model.ukdbEntities3.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Ugyfelkezelo_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DeveloperLog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.4.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 4.0 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\changelog.txt" />
+    <Content Include="folder_home.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Patches\v10.sqlce">
+      <Visible>False</Visible>
+      <Group>databasepatch</Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Patches\v11.sqlce">
+      <Visible>False</Visible>
+      <Group>databasepatch</Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Patches\v12.sqlce">
+      <Visible>False</Visible>
+      <Group>databasepatch</Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Patches\v13.sqlce">
+      <Visible>False</Visible>
+      <Group>databasepatch</Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Patches\v14.sqlce">
+      <Visible>False</Visible>
+      <Group>databasepatch</Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Patches\v8.sqlce">
+      <Visible>False</Visible>
+      <Group>databasepatch</Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Patches\v9.sqlce">
+      <Visible>False</Visible>
+      <Group>databasepatch</Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="ukdb.sdf">
+      <Visible>False</Visible>
+      <Group>database</Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseUpdateCommander\DatabaseUpdateCommander.csproj">
+      <Project>{a485db18-dc6b-4581-a107-7dcd2f583375}</Project>
+      <Name>DatabaseUpdateCommander</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,201 @@
+﻿<Window x:Class="Ugyfelkezelo.View.EditUgyfelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Ugyfelkezelo.ViewModel.Converters"
+        Title="Ügyfél" Height="699" Width="665" ResizeMode="NoResize" FocusManager.FocusedElement="{Binding ElementName=UgyfelNeveTextBox}">
+    <Window.Resources>
+        <local:BankszamlaszamConverter x:Key="BankszamlaszamConverter"  />
+        <local:BoolToVisibleOrHidden x:Key="TrueToVisibleConverter" Collapse="False" Reverse="False"/>
+        <local:BoolToVisibleOrHidden x:Key="TrueToHiddenConverter" Collapse="False" Reverse="True"/>
+        <local:ByteBoolConverter x:Key="byteBoolConverter" />
+        <local:SzolgaltatasIdotartamaConverter x:Key="szolgaltatasIdotartamaConverter" />
+        <local:BitMaskConverter x:Key="bitmaskConverter" />
+        <Style x:Key="labelboxStyle">
+            <Setter Property="Grid.Column" Value="0" />
+        </Style>
+        <Style x:Key="editboxStyle">
+            <Setter Property="Grid.Column" Value="1" />
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"  Command="{Binding SaveCommand}" />
+    </Window.InputBindings>
+    <Grid  Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="179" />
+            <ColumnDefinition Width="560*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="0" Text="Név (leánykori név)" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="1" Text="Születési hely" />
+        <TextBlock Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToVisibleConverter}}" Style="{StaticResource labelboxStyle}" Grid.Row="2" Text="Születési idő" />
+        <TextBlock Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToHiddenConverter}}"  Style="{StaticResource labelboxStyle}" Grid.Row="3" Text="Cégszám" />
+        <TextBlock Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToVisibleConverter}}"  Style="{StaticResource labelboxStyle}" Grid.Row="4" Text="Anyja neve" />
+        <TextBlock Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToHiddenConverter}}"  Style="{StaticResource labelboxStyle}" Grid.Row="5" Text="Cégképviselő neve" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="6" Text="Lépcsőház" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="7" Text="Emelet" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="8" Text="Lakás" />
+        <TextBlock Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToHiddenConverter}}"  Style="{StaticResource labelboxStyle}" Grid.Row="9" Text="Cégszékhely" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="10" Text="Számlázási cím" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="11" Text="Azonosító okmány/adószám" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="12" Text="Telefonszám" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="13" Text="Bankszámlaszám" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="14" Text="Előfizető jellege" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="15" Text="Igénybevétel jogcíme" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="16" Text="Szolgáltatás kezdő időpontja" />
+        <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="17" Text="Szolgáltatás időtartama" />
+
+        <TextBox Name="UgyfelNeveTextBox" Style="{StaticResource editboxStyle}" Grid.Row="0" LostFocus="TextBox_LostFocus" TextChanged="TextBox_TextChanged" Text="{Binding Path=EditedItem.Nev, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Style="{StaticResource editboxStyle}" Grid.Row="1" Text="{Binding Path=EditedItem.SzuletesiHely, UpdateSourceTrigger=PropertyChanged}" />
+        <DatePicker Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToVisibleConverter}}"  Style="{StaticResource editboxStyle}" Grid.Row="2" SelectedDate="{Binding Path=EditedItem.SzuletesiIdo, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToHiddenConverter}}" Style="{StaticResource editboxStyle}" Grid.Row="3" Text="{Binding Path=EditedItem.Cegszam, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToVisibleConverter}}"  Style="{StaticResource editboxStyle}" Grid.Row="4" Text="{Binding Path=EditedItem.AnyjaNeve, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToHiddenConverter}}"  Style="{StaticResource editboxStyle}" Grid.Row="5" Text="{Binding Path=EditedItem.CegkepviseloNeve}" />
+        <ComboBox Style="{StaticResource editboxStyle}" Grid.Row="6" IsEditable="False" ItemsSource="{Binding Path=LepcsohazViewModel.Items}"
+                  DisplayMemberPath="TeljesCim" SelectedValue="{Binding Path=EditedItem.Lepcsohaz, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Style="{StaticResource editboxStyle}" Grid.Row="7" Text="{Binding Path=EditedItem.LakohelyEmelet, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Style="{StaticResource editboxStyle}" Grid.Row="8" Text="{Binding Path=EditedItem.LakohelyLakas, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Visibility="{Binding EditedItemIsEgyeniElofizeto, Converter={StaticResource TrueToHiddenConverter}}"  Style="{StaticResource editboxStyle}" Grid.Row="9" Text="{Binding Path=EditedItem.Cegszekhely, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Style="{StaticResource editboxStyle}" Grid.Row="10" Text="{Binding Path=EditedItem.SzamlazasiCim, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Style="{StaticResource editboxStyle}" Grid.Row="11" Text="{Binding Path=EditedItem.Okmanyszam, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Style="{StaticResource editboxStyle}" Grid.Row="12" Text="{Binding Path=EditedItem.Telefonszam, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Style="{StaticResource editboxStyle}" Grid.Row="13"
+                 Text="{Binding Path=EditedItem.Bankszamlaszam, UpdateSourceTrigger=PropertyChanged}"
+                 MaxLength="24"
+                 />
+        <StackPanel Style="{StaticResource editboxStyle}" Grid.Row="14" Orientation="Horizontal" >
+            <CheckBox Content="Egyéni előfizető" IsChecked="{Binding EditedItemIsEgyeniElofizeto}" Margin="10,0,0,0" VerticalAlignment="Center" ></CheckBox>
+        </StackPanel>       
+        <StackPanel Style="{StaticResource editboxStyle}" Grid.Row="15" Orientation="Horizontal" >
+            <RadioButton IsChecked="{Binding Path=EditedItem.IgenybevetelJogcime, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource byteBoolConverter}, ConverterParameter=0}"                
+                GroupName="igenybevetelJogcime" Content="tulajdonos" Margin="10,0,0,0" VerticalAlignment="Center" />
+            <RadioButton IsChecked="{Binding Path=EditedItem.IgenybevetelJogcime, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource byteBoolConverter}, ConverterParameter=1}"
+                GroupName="igenybevetelJogcime" Content="bérlő" Margin="10,0,0,0" VerticalAlignment="Center"  />
+            <RadioButton IsChecked="{Binding Path=EditedItem.IgenybevetelJogcime, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource byteBoolConverter}, ConverterParameter=2}"
+                GroupName="igenybevetelJogcime" Content="albérlő" Margin="10,0,0,0" VerticalAlignment="Center"  />
+            <RadioButton IsChecked="{Binding Path=EditedItem.IgenybevetelJogcime, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource byteBoolConverter}, ConverterParameter=3}"
+                GroupName="igenybevetelJogcime" Content="hozzátartozó" Margin="10,0,0,0" VerticalAlignment="Center"  />
+        </StackPanel>
+        <DatePicker Style="{StaticResource editboxStyle}" Grid.Row="16" SelectedDate="{Binding Path=EditedItem.SzolgaltatasKezdoIdopontja, UpdateSourceTrigger=PropertyChanged}"  />
+        <StackPanel Style="{StaticResource editboxStyle}" Grid.Row="17" Orientation="Horizontal"  >
+            <RadioButton GroupName="szolgaltatasKezdoIdopontja" Content="határozatlan" Margin="10,0,0,0" VerticalAlignment="Center"
+                         IsChecked="{Binding Path=EditedItem.HatarozottIdejuSzolgaltatasVege, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource szolgaltatasIdotartamaConverter}, ConverterParameter=0}"/>
+            <RadioButton GroupName="szolgaltatasKezdoIdopontja" Margin="10,0,0,0" VerticalAlignment="Center"
+                         IsChecked="{Binding Path=EditedItem.HatarozottIdejuSzolgaltatasVege, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource szolgaltatasIdotartamaConverter}, ConverterParameter=1}">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="határozott " VerticalAlignment="Center" />
+                    <DatePicker Name="szolgaltatasVegeDate" SelectedDate="{Binding Path=EditedItem.HatarozottIdejuSzolgaltatasVege, UpdateSourceTrigger=PropertyChanged}"  />
+                    <TextBlock Text="-ig " VerticalAlignment="Center" />
+                </StackPanel>
+            </RadioButton>
+        </StackPanel>
+        
+        <Grid Grid.Row="18" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="225" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="20*" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="0" Text="Régi csatornák(Basic); díj/hó" />
+            <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="1" Text="Új csatornák(EBS); díj/hó" />
+            <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="2" Text="HBO 1 éves hűségnyilatkozattal; díj/hó" />
+            <TextBlock Style="{StaticResource labelboxStyle}" Grid.Row="3" Text="HBO hűségnyilatkozat nélkül; díj/hó" />
+
+            <TextBlock Style="{StaticResource editboxStyle}" Grid.Row="0" Text="1811.- Ft + ÁFA= 2300 Ft" />
+            <TextBlock Style="{StaticResource editboxStyle}" Grid.Row="1" Text="1811.- Ft + ÁFA= 2300 Ft" />
+            <TextBlock Style="{StaticResource editboxStyle}" Grid.Row="2" Text="1575.- Ft + ÁFA= 2000 Ft" />
+            <TextBlock Style="{StaticResource editboxStyle}" Grid.Row="3" Text="2000.- Ft + ÁFA= 2500 Ft" />
+
+            <CheckBox Style="{StaticResource editboxStyle}" Grid.Row="0" Grid.Column="2" 
+                IsChecked="{Binding Path=EditedItem.CsomagBitSet, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource bitmaskConverter}, ConverterParameter=1}"/>         
+            
+            <CheckBox Style="{StaticResource editboxStyle}" Grid.Row="1" Grid.Column="2"
+                IsChecked="{Binding Path=EditedItem.CsomagBitSet, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource bitmaskConverter}, ConverterParameter=2}"/>
+
+            <CheckBox Style="{StaticResource editboxStyle}" Grid.Row="2" Grid.Column="2"
+                IsChecked="{Binding Path=EditedItem.CsomagBitSet, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource bitmaskConverter}, ConverterParameter=4}"/>
+            <CheckBox Style="{StaticResource editboxStyle}" Grid.Row="3" Grid.Column="2"
+                IsChecked="{Binding Path=EditedItem.CsomagBitSet, UpdateSourceTrigger=PropertyChanged,
+                Converter={StaticResource bitmaskConverter}, ConverterParameter=8}"/>
+
+
+
+            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Vertical">
+                <TextBlock Text="Díjbefizetés módja:" />
+                <RadioButton GroupName="dijbefizetesModja" Content="dijbeszedőnek nyugta ellenében" Margin="10,0,0,0"
+                            IsChecked="{Binding Path=EditedItemDijbefizetesModja, UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource byteBoolConverter}, ConverterParameter=0}"/>
+                <RadioButton GroupName="dijbefizetesModja" Content="csoportos beszedéssel" Margin="10,0,0,0"
+                            IsChecked="{Binding Path=EditedItemDijbefizetesModja, UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource byteBoolConverter}, ConverterParameter=1}"/>
+                <RadioButton GroupName="dijbefizetesModja" Content="banki átutalással" Margin="10,0,0,0"
+                            IsChecked="{Binding Path=EditedItemDijbefizetesModja, UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource byteBoolConverter}, ConverterParameter=2}"/>
+
+                <StackPanel Margin="0,30,0,0" Orientation="Vertical" Visibility="{Binding EditedItemIsCsoportosBeszedes, Converter={StaticResource TrueToVisibleConverter }}">
+                    <TextBlock Text="Csoportos beszedés kódja" HorizontalAlignment="Left" />
+                    <TextBox Width="100" HorizontalAlignment="Left" Text="{Binding Path=EditedItem.CsBeszedKod}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
+                <TextBlock Text="Díjbefizetés ütemezése:" />
+                <RadioButton GroupName="dijbefizetesUtemezese" Content="havi (tárgyhó 20-ig)" Margin="10,0,0,0"
+                            IsChecked="{Binding Path=EditedItem.DifbefizetesUtemezese, UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource byteBoolConverter}, ConverterParameter=0}"/>
+                <RadioButton GroupName="dijbefizetesUtemezese" Content="negyedéves előre (2./5./8./11. hónap végéig)" Margin="10,0,0,0"
+                            IsChecked="{Binding Path=EditedItem.DifbefizetesUtemezese, UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource byteBoolConverter}, ConverterParameter=1}"/>
+                <RadioButton GroupName="dijbefizetesUtemezese" Content="féléves előre (3./9. hónap végéig)" Margin="10,0,0,0"
+                            IsChecked="{Binding Path=EditedItem.DifbefizetesUtemezese, UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource byteBoolConverter}, ConverterParameter=2}"/>
+                <RadioButton GroupName="dijbefizetesUtemezese" Content="éves előre (3. hónap végéig)" Margin="10,0,0,0"
+                            IsChecked="{Binding Path=EditedItem.DifbefizetesUtemezese, UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource byteBoolConverter}, ConverterParameter=3}"/>
+            </StackPanel>
+        </Grid>
+        <Button Command="{Binding SaveCommand}" Grid.ColumnSpan="2" Content="Mentés" Width="50" Grid.Row="19" HorizontalAlignment="Left" Margin="40,0,0,0" />
+        <Button Command="{Binding CancelCommand}" Grid.ColumnSpan="2" Content="Mégsem" Width="60" Grid.Row="19" HorizontalAlignment="Left" Margin="120,0,0,0" />
+        <Button Command="{Binding SaveAndNewCommand}" Grid.ColumnSpan="2" Content="Mentés és új" Width="100" Grid.Row="19" HorizontalAlignment="Left" Margin="440,0,0,0" />
+
+    </Grid>
+</Window>
