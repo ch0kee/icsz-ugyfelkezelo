@@ -19,9 +19,9 @@
             <ColumnDefinition Width="18*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <TextBox IsReadOnly="True" Text="{Binding SelectedDate, UpdateSourceTrigger=PropertyChanged}" PreviewMouseLeftButtonDown="TextBox_PreviewMouseLeftButtonDown" PreviewLostKeyboardFocus="TextBox_PreviewLostKeyboardFocus" Margin="5,5,2,5" Grid.ColumnSpan="2"/>
+        <TextBox Name="_SelectedDateTextBox" IsReadOnly="True" PreviewMouseLeftButtonDown="TextBox_PreviewMouseLeftButtonDown" PreviewLostKeyboardFocus="TextBox_PreviewLostKeyboardFocus" Margin="5,5,2,5" Grid.ColumnSpan="2"/>
         <Popup x:Name="MonthsDiagramPopup" Placement="Top" PopupAnimation="Fade" AllowsTransparency="True" Grid.ColumnSpan="3"   >
-            <local:MonthsDiagramControl />
+            <local:MonthsDiagramControl x:Name="_MonthsDiagramControl" />
         </Popup>
     </Grid>
 </UserControl>

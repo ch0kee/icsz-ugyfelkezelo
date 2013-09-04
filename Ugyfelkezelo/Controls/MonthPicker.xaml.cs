@@ -19,31 +19,32 @@ namespace Ugyfelkezelo.Controls
     /// </summary>
     public partial class MonthPicker : UserControl
     {
-        public MonthPickerModel _Model;
+
+        //public MonthPickerModel _Model;
 
         public MonthPicker()
         {
             InitializeComponent();
-            _Model = new MonthPickerModel();
-            this.DataContext = _Model;
-            StoredYear = StoredMonth = 0;
-            MonthsDiagramPopup.DataContext = _Model;
-
-            /*
-            _Model.CloseWindow += (s, ev) =>
-            {
-                StoredYear = _Model.SelectedYear;
-                StoredMonth = _Model.SelectedMonthIndex;
-                _MonthsDiagramWindow.Close();
-            };*/
+            Year = DateTime.Now.Year;
+            Month = DateTime.Now.Month-1;
         }
 
+        public DateTime Date { get { return new DateTime(Year, Month + 1, 1); } set { Year = value.Year; Month = value.Month - 1; } }
 
-        public Int32 StoredYear { get; private set; }
-        public Int32 StoredMonth { get; private set; }
+        public Int32 Year { get { return _MonthsDiagramControl.SelectedYear; } set { _MonthsDiagramControl.SelectedYear = value; SetSelectedDateString();  } }
+        public Int32 Month { get { return _MonthsDiagramControl.SelectedMonthIndex; } set { _MonthsDiagramControl.SelectedMonthIndex = value; SetSelectedDateString(); } }
 
-        public bool IsMonthPicked { get { return StoredYear != 0 && StoredMonth != 0; } }
+        //public bool IsMonthPicked { get { return Year != 0 && Month != 0; } }
+        
+        public void SetSelectedDateString()
+        {
+            _SelectedDateTextBox.Text = _MonthsDiagramControl.SelectedDateString;
+        }
 
+        public void Clear()
+        {
+            _SelectedDateTextBox.Text = "";
+        }
         
 
         private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -64,12 +65,17 @@ namespace Ugyfelkezelo.Controls
 
         private void TextBox_PreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
+            Year = _MonthsDiagramControl.SelectedYear;
+            SetSelectedDateString();
+            //Month = _Model.SelectedMonthIndex;
             MonthsDiagramPopup.IsOpen = false;
         }
 
 
 
 
+
+        public bool IsReadOnly { get { return _SelectedDateTextBox.IsReadOnly; } set { _SelectedDateTextBox.IsReadOnly = value; } }
     }
 
 

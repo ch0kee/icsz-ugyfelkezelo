@@ -7,12 +7,20 @@ using Ugyfelkezelo.ViewModel;
 
 namespace Ugyfelkezelo.Controls
 {
+    /*
     public class MonthPickerModel : ViewModel.ViewModelBase
     {
         public ObservableCollection<MonthDescriptor> Months { get; private set; }
 
-        public Int32 SelectedMonthIndex { get; set; }
-        public Int32 SelectedYear { get; set; }
+        Int32 _SelectedMonthIndex = 0;
+        Int32 _SelectedYear = 2001;
+        public Int32 SelectedMonthIndex { get { return _SelectedMonthIndex; } set
+        {
+            Months[_SelectedMonthIndex].Enabled = false;
+            _SelectedMonthIndex = value;
+            Months[_SelectedMonthIndex].Enabled = true;
+            OnPropertyChanged("SelectedMonthIndex"); OnPropertyChanged("SelectedDate"); } }
+        public Int32 SelectedYear { get { return _SelectedYear; } set { _SelectedYear = value; OnPropertyChanged("SelectedYear"); OnPropertyChanged("SelectedDate"); } }
 
 
         public MonthPickerModel()
@@ -36,23 +44,11 @@ namespace Ugyfelkezelo.Controls
                 md.SelectMonth = new ViewModel.DelegateCommand(m => SelectMonthExecuted(m));
             }
 
-            PreviousYearCommand = new DelegateCommand(x => SetCurrentYear(SelectedYear - 1));
-            NextYearCommand = new DelegateCommand(x => SetCurrentYear(SelectedYear + 1));
+            PreviousYearCommand = new DelegateCommand(x => SelectedYear = (SelectedYear - 1));
+            NextYearCommand = new DelegateCommand(x => SelectedYear = (SelectedYear + 1));
 
-            PreviousMonthCommand = new DelegateCommand(x => {
-                if (SelectedMonthIndex == 0)
-                    SetCurrentYear(SelectedYear - 1);
-                SetCurrentMonth((SelectedMonthIndex - 1) % 12);
-            });
-            NextMonthCommand = new DelegateCommand(x => {
-                SetCurrentMonth((SelectedMonthIndex + 1) % 12);
-                if (SelectedMonthIndex == 0)
-                    SetCurrentYear(SelectedYear + 1);
-            });
-
-
-            SetCurrentMonth(DateTime.Today.Month - 1);
-            SetCurrentYear(DateTime.Today.Year);
+            SelectedMonthIndex = DateTime.Today.Month - 1;
+            SelectedYear = DateTime.Today.Year;
         }
 
         public string SelectedDate
@@ -70,31 +66,14 @@ namespace Ugyfelkezelo.Controls
         public DelegateCommand PreviousYearCommand { get; set; }
         public DelegateCommand NextYearCommand { get; set; }
 
-        public DelegateCommand PreviousMonthCommand { get; set; }
-        public DelegateCommand NextMonthCommand { get; set; }
 
-        private void SetCurrentYear(int yy)
-        {
-            SelectedYear = yy;
-            OnPropertyChanged("SelectedYear");
-            OnPropertyChanged("SelectedDate");
-        }
-
-        private void SetCurrentMonth(int mm)
-        {
-            Months[SelectedMonthIndex].Enabled = false;
-            SelectedMonthIndex = mm;
-            Months[SelectedMonthIndex].Enabled = true;
-            OnPropertyChanged("SelectedMonth");
-            OnPropertyChanged("SelectedDate");
-        }
 
         private void SelectMonthExecuted(object o)
         {
             if (o == null || !(o is Int32))
                 return;
             Int32 i = (Int32) o;
-            SetCurrentMonth(i);
+            SelectedMonthIndex = i;
 
             if (CloseWindow != null)
                 CloseWindow(this, EventArgs.Empty);
@@ -103,5 +82,5 @@ namespace Ugyfelkezelo.Controls
 
         public event EventHandler CloseWindow;
     }
-        
+        */
 }
