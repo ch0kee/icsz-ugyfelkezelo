@@ -3,9 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ugyfelkezelo.Controls"
              mc:Ignorable="d" 
              Height="220" Width="213" Background="White">
     <UserControl.Resources>
+        <x:ArrayExtension x:Name="Months" x:Key="Months" Type="{x:Type local:MonthDescriptor}">
+            <local:MonthDescriptor>0 január</local:MonthDescriptor>
+            <local:MonthDescriptor>1 február</local:MonthDescriptor>
+            <local:MonthDescriptor>2 március</local:MonthDescriptor>
+            <local:MonthDescriptor>3 április</local:MonthDescriptor>
+            <local:MonthDescriptor>4 május</local:MonthDescriptor>
+            <local:MonthDescriptor>5 június</local:MonthDescriptor>
+            <local:MonthDescriptor>6 július</local:MonthDescriptor>
+            <local:MonthDescriptor>7 augusztus</local:MonthDescriptor>
+            <local:MonthDescriptor>8 szeptember</local:MonthDescriptor>
+            <local:MonthDescriptor>9 október</local:MonthDescriptor>
+            <local:MonthDescriptor>10 november</local:MonthDescriptor>
+            <local:MonthDescriptor>11 december</local:MonthDescriptor>
+        </x:ArrayExtension>
         <Style x:Key="MyFocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -122,12 +137,12 @@
             <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
         <!--Ev-->
-        <Button Margin="2" Command="{Binding PreviousYearCommand}" Grid.Row="0" Grid.Column="0" Content="&lt;" Style="{StaticResource PagerButtonStyle}" PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown" />
-        <Button Margin="2" Command="{Binding NextYearCommand}" Grid.Row="0" Grid.Column="2" Content="&gt;" Style="{StaticResource PagerButtonStyle}" PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown" />
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedYear}" Style="{StaticResource YearDisplayStyle}" />
+        <Button Name="previousYearButton" Margin="2" Command="{Binding PreviousYearCommand}" Grid.Row="0" Grid.Column="0" Content="&lt;" Style="{StaticResource PagerButtonStyle}" PreviewMouseLeftButtonDown="Button_PreviousYearClicked" />
+        <Button Name="nextYearButton" Margin="2" Command="{Binding NextYearCommand}" Grid.Row="0" Grid.Column="2" Content="&gt;" Style="{StaticResource PagerButtonStyle}" PreviewMouseLeftButtonDown="Button_NextYearClicked" />
+        <TextBlock Name="yearTextBlock" Grid.Row="0" Grid.Column="1" Text="" Style="{StaticResource YearDisplayStyle}" />
 
         <!--Naptar-->
-        <ItemsControl Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Months}">
+        <ItemsControl Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{StaticResource Months}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Rows="4" Columns="3" />
@@ -136,8 +151,7 @@
             <ItemsControl.ItemTemplate>
                 <!--az elemek gombok lesznek-->
                 <DataTemplate>
-                    <Button Command="{Binding SelectMonth}" CommandParameter="{Binding Index}"
-                            Content="{Binding Path=Name}" FontSize="10">
+                    <Button CommandParameter="{Binding Index}" Content="{Binding Path=Name}" FontSize="10" PreviewMouseLeftButtonDown="Button_MonthClicked">
                         <Button.Background>
                             <SolidColorBrush Color="{Binding Color}" />
                         </Button.Background>

@@ -23,7 +23,6 @@ namespace Ugyfelkezelo.ViewModel.Modules
         protected void ManageElofizetesekExecuted(object o)
         {
             ManageElofizetesekWindow window = new ManageElofizetesekWindow();
-            window.DataContext = this;
             window.ShowDialog();
         }
 

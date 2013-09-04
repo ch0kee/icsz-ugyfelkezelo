@@ -1,4 +1,8 @@
-﻿* infocentrum ha nem volt módosítva azóta akkor ne töltsük be újra
+﻿! csak a módosított cuccokat kell újratölteni
+! Changelogot frissíteni
+! Elofizetesek Mettol legyen NOT NULL
+
+* infocentrum ha nem volt módosítva azóta akkor ne töltsük be újra
 
 8/A-ban hány BASIC-es van
 Lé

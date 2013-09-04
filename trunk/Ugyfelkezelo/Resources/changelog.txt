@@ -1,3 +1,9 @@
+Elõfizetések rögzítése
+ * Elõfizetések menüpont -> Elõfizetések kezelése..
+ Minden értelemszerûen történik. Az ablak bezárásakor MINDEN MÓDOSíTÁST RÖGZíT!
+ TESSÉK TESZTELNI!
+
+
 Új funkciók:
 * !!TARTOZÁSOK SZÁMOLÁSA INFOCENTRUM SZÁMLÁZÓBÓL!!
 * A Mûveletek menüpontban mûködik az alábbi két funkció:

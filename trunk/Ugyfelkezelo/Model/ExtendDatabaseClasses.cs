@@ -28,6 +28,22 @@ namespace Ugyfelkezelo.Model
             }
         }
 
+        public string KonstrukcioNev
+        {
+            get
+            {
+                return Konstrukcio.Nev;
+            }
+        }
+
+        public int KonstrukcioAr
+        {
+            get
+            {
+                return Konstrukcio.Ar;
+            }
+        }
+
         public DateTime KezdoDatum
         {
             get
@@ -54,10 +70,10 @@ namespace Ugyfelkezelo.Model
         {
             get
             {
-                if (!this.Mettol.HasValue)
-                    return "Szerződéskötés napjától";
-
                 DateTime from = KezdoDatum;
+                //if (!this.Mettol.HasValue)
+                //    return "Szerződéskötés napjától";
+
                 return from.ToString("yyyy' - 'MM");
             }
         }
@@ -66,9 +82,6 @@ namespace Ugyfelkezelo.Model
         {
             get
             {
-                if (!this.Meddig.HasValue)
-                    return "Határozatlan";
-
                 DateTime to = ZaroDatum;
                 return to.ToString("yyyy' - 'MM");
             }
